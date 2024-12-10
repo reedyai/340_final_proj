@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View Projects</title>
+    <title>View Renter</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
@@ -35,53 +35,47 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header clearfix">
-                        <h2 class="pull-left">View Projects</h2>
-						<a href="addProject.php" class="btn btn-success pull-right">Add Project</a>
+                        <h2 class="pull-left">View Renter</h2>
+						<!--<a href="addProject.php" class="btn btn-success pull-right">Add Project</a> DONT THINK WE NEED THIS BUTTON-->
                     </div>
 <?php
 
 // Check existence of id parameter before processing further
-if(isset($_GET["Ssn"]) && !empty(trim($_GET["Ssn"]))){
-	$_SESSION["Ssn"] = $_GET["Ssn"];
-}
-if(isset($_GET["Lname"]) && !empty(trim($_GET["Lname"]))){
-	$_SESSION["Lname"] = $_GET["Lname"];
+if(isset($_GET["movie_id"]) && !empty(trim($_GET["movie_id"]))){
+	$_SESSION["movie_id"] = $_GET["movie_id"];
 }
 
-if(isset($_SESSION["Ssn"]) ){
+if(isset($_SESSION["movie_id"]) ){
 	
     // Prepare a select statement
-    $sql = "SELECT P.Pname, P.Pnumber, WO.Hours, WO.Essn FROM PROJECT P, WORKS_ON WO WHERE WO.Essn = ? AND WO.Pno = P.Pnumber";
-
-	//$sql = "SELECT Essn, Pno, Hours From WORKS_ON WHERE Essn = ? ";   
+    $sql = "SELECT renter_id, name, title FROM Renter R  INNER JOIN Movies On Renter.movie_id = Movies.movie_id WHERE movie_id = ?"
+  
     if($stmt = mysqli_prepare($link, $sql)){
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt, "s", $param_Ssn);      
+        mysqli_stmt_bind_param($stmt, "s", $param_movie_id);      
         // Set parameters
-       $param_Ssn = $_SESSION["Ssn"];
-	   $Lname = $_SESSION["Lname"];
+       $param_movie_id = $_SESSION["movie_id"];
 
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
             $result = mysqli_stmt_get_result($stmt);
     
-			echo"<h4> Projects for ".$Lname." &nbsp      SSN =".$param_Ssn."</h4><p>";
 			if(mysqli_num_rows($result) > 0){
 				echo "<table class='table table-bordered table-striped'>";
                     echo "<thead>";
                         echo "<tr>";
-                            echo "<th width = 20%>Project Number</th>";
-                            echo "<th>Project Name</th>";
-                            echo "<th>Hours</th>";
+                            echo "<th width = 20%>Renter ID</th>";
+                            echo "<th>Renter Name</th>";
+                            echo "<th>Movie Title</th>";
                         echo "</tr>";
                     echo "</thead>";
                     echo "<tbody>";							
 				// output data of each row
                     while($row = mysqli_fetch_array($result)){
                         echo "<tr>";
-                        echo "<td>" . $row['Pnumber'] . "</td>";
-                        echo "<td>" . $row['Pname'] . "</td>";
-                        echo "<td>" . $row['Hours'] . "</td>";
+                        echo "<td>" . $row['renter_id'] . "</td>";
+                        echo "<td>" . $row['name'] . "</td>";
+                        echo "<td>" . $row['title'] . "</td>";
     
                         echo "</tr>";
                     }

@@ -92,7 +92,8 @@
                                         echo "<td>" . $row['renter_id'] . "</td>";
                                         echo "<td>";
                                         //if a button is commented then it needs to be worked on
-                                            //MAKE THIS VIEW RENTER echo "<a href='viewProjects.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Projects' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
+                                            //MAKE THIS VIEW RENTER
+                                            echo "<a href='viewRenter.php?Ssn=". $row['movie_id']."' title='View Renter' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
                                            //MAKE THIS VIEW CAST MAYBE echo "<a href='viewDependents.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
@@ -109,7 +110,7 @@
                     }
 					echo "<br> <h2> Renter Info </h2> <br>";
 					
-                    // Select Department Stats
+                    // Select renter info
 					// You will need to Create a DEPT_STATS table
 					
                     $sql2 = "SELECT * FROM Renter";
@@ -131,7 +132,7 @@
                                         echo "<td>" . $row['name'] . "</td>";
                                         echo "<td>" . $row['movie_id'] . "</td>";
                                         echo "<td>";
-                                        //update these to work for renter
+                                        //updated these to work for renter (hopefully)
                                         echo "<a href='updateRenter.php?renter_id=". $row['renter_id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                         echo "<a href='deleteRenter.php?renter_id=". $row['renter_id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";	
                                         echo "</td>";
@@ -142,7 +143,7 @@
                             // Free result set
                             mysqli_free_result($result2);
                         } else{
-                            echo "<p class='lead'><em>No records were found for Dept Stats.</em></p>";
+                            echo "<p class='lead'><em>No records were found for renters.</em></p>";
                         }
                     } else{
                         echo "ERROR: Could not able to execute $sql2. <br>" . mysqli_error($link);
