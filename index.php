@@ -133,7 +133,7 @@
                                         echo "<td>";
                                         //update these to work for renter
                                         echo "<a href='updateRenter.php?renter_id=". $row['renter_id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                        //echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";	
+                                        echo "<a href='deleteRenter.php?renter_id=". $row['renter_id'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";	
                                         echo "</td>";
                                     echo "</tr>";
                                 }
