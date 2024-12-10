@@ -63,7 +63,7 @@
 						$sql = "SELECT Ssn,Fname,Lname,Salary, Address, Bdate, PayLevel(Ssn) as Level, Super_ssn, Dno
 							FROM EMPLOYEE";
 					*/
-                    $sql = "SELECT * 
+                    $sql = "SELECT movie_id, title, genre, release_year, availability, rent_date, return_date 
                             FROM Movies";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
@@ -77,7 +77,6 @@
                                         echo "<th width=10%>Availability</th>";
                                         echo "<th width=10%>Date Rented</th>";
                                         echo "<th width=8%>Return Date</th>";
-                                        echo "<th width=10%>ID of renter</th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
@@ -87,16 +86,15 @@
                                         echo "<td>" . $row['title'] . "</td>";
                                         echo "<td>" . $row['genre'] . "</td>";
                                         echo "<td>" . $row['release_year'] . "</td>";
-                                        echo "<td>" . $row['availability'] . "</td>";
+                                        echo "<td>" . ($row['availability'] == 1 ? "Yes" : "No") . "</td>";
                                         echo "<td>" . $row['rent_date'] . "</td>";
                                         echo "<td>" . $row['return_date'] . "</td>";
                                         echo "<td>" . $row['renter_id'] . "</td>";
-                                        /*echo "<td>";  STILL DO THIS JUST NOT DOING IT RN BC IDK WHAT BUTTONS WE WANT
-                                            echo "<a href='viewProjects.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Projects' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                            echo "<a href='updateEmployee.php?Ssn=". $row['Ssn'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-											echo "<a href='viewDependents.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
-                                        echo "</td>";*/
+                                        echo "<td>";
+                                        //if a button is commented then it needs to be worked on
+                                            //MAKE THIS VIEW RENTER echo "<a href='viewProjects.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Projects' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
+                                           //MAKE THIS VIEW CAST MAYBE echo "<a href='viewDependents.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
+                                        echo "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
@@ -132,7 +130,11 @@
                                         echo "<td>" . $row['renter_id'] . "</td>";
                                         echo "<td>" . $row['name'] . "</td>";
                                         echo "<td>" . $row['movie_id'] . "</td>";
-               
+                                        echo "<td>";
+                                        //update these to work for renter
+                                        echo "<a href='updateRenter.php?renter_id=". $row['renter_id'] ."' title='Update Record' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                        //echo "<a href='deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Record' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";	
+                                        echo "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
