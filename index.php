@@ -92,9 +92,9 @@
                                         echo "<td>" . $row['renter_id'] . "</td>";
                                         echo "<td>";
                                         //if a button is commented then it needs to be worked on
-                                            //MAKE THIS VIEW RENTER
-                                            echo "<a href='viewRenter.php?Ssn=". $row['movie_id']."' title='View Renter' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
-                                           //MAKE THIS VIEW CAST MAYBE echo "<a href='viewDependents.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
+                                            echo "<a href='viewRenter.php?movie_id=". $row['movie_id']."' title='View Renter' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>";
+                                           //MAKE THIS VIEW CAST MAYBE 
+                                           echo "<a href='viewCast.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
