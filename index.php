@@ -51,9 +51,6 @@
 					<li> DELETE renters </li>
 				</ol>
 		       <h2 class="pull-left">Movie Details</h2>
-               DO THIS-------------|
-                                   V
-                        <a href="createEmployee.php" class="btn btn-success pull-right">Add New movie</a>
                     </div>
                     <?php
                     // Include config file
@@ -153,6 +150,7 @@
                     mysqli_close($link);
                     ?>
                 </div>
+                <a href="createRenter.php" class="btn btn-success pull-right">Add New Renter</a>
 
 </body>
 </html>
